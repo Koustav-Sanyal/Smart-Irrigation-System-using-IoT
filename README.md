@@ -43,4 +43,4 @@ Since different crops have different moisture requirements, here we consider a s
 
 3> The DHT11 sensor additionally records the temperature and humidity of the atmosphere continuously.
 
-4> These sensor datas of temperature, moisture and humidity will be sent to the ThinkSpeak server at defined inetrvals of time, so that the conditions can be monitored from anywhere.
+4> These sensor datas of temperature, moisture and humidity will be sent to the ThinkSpeak server at defined intervals of time, so that the conditions can be monitored from anywhere.
