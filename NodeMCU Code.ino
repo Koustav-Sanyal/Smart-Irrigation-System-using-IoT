@@ -1,6 +1,6 @@
 #include <DHT.h>
 #include <ESP8266WiFi.h>
-String apiKey = "X5AQ3EGIKMBYW31H";    
+String apiKey = "8HL859XD81TLX4FY";    
 const char* server = "api.thingspeak.com";
 const char *ssid =  "Wifi name";     //WiFi Name
 const char *pass =  "wifipassword";  //WiFi Password
@@ -10,9 +10,9 @@ WiFiClient client;
 
 const int moisturePin = A0;             // moisture sensor pin
 const int motorPin = D0;
-unsigned long interval = 10000;
+unsigned long interval = 60000;
 unsigned long previousMillis = 0;
-unsigned long interval1 = 1000;
+unsigned long interval1 = 10000;
 unsigned long previousMillis1 = 0;
 float moisturePercentage;              //moisture reading
 float h;                  // humidity reading
@@ -20,7 +20,7 @@ float t;                  //temperature reading
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   delay(10);
   pinMode(motorPin, OUTPUT);
   digitalWrite(motorPin, LOW); // keep the motor off initially
@@ -59,13 +59,13 @@ void loop()
     previousMillis1 = millis();
   }
 
-if (moisturePercentage < 50) {
+if (moisturePercentage < 40) {
   digitalWrite(motorPin, HIGH);         // turn on motor
 }
-if (moisturePercentage > 50 && moisturePercentage < 55) {
+if (moisturePercentage > 40 && moisturePercentage < 45) {
   digitalWrite(motorPin, HIGH);        //turn on motor pump
 }
-if (moisturePercentage > 56) {
+if (moisturePercentage > 46) {
   digitalWrite(motorPin, LOW);          // turn off mottor
 }
 
@@ -99,7 +99,7 @@ void sendThingspeak() {
     client.print(postStr.length());           //send length of the string
     client.print("\n\n");
     client.print(postStr);                      // send complete string
-    Serial.print("Moisture Percentage: ");
+    Serial.print("Moisture: ");
     Serial.print(moisturePercentage);
     Serial.print("%. Temperature: ");
     Serial.print(t);
